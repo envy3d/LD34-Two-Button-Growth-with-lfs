@@ -14,6 +14,7 @@ public class VehicleController : MonoBehaviour
     public float maxAngularVelocity = 180;
     public AnimationCurve turningAngleCurve = AnimationCurve.Linear(0, 0, 2, 50);
     public SpinnerHand spinner;
+    public Transform vehicleScale;
     public AudioClip audioGotHit;
     public AudioClip audioSuccess;
     public AudioClip audioWin;
@@ -200,6 +201,11 @@ public class VehicleController : MonoBehaviour
         canControlEngine = false;
         canControlSteering = false;
         canUseAbilities = false;
+    }
+
+    public void SetVehicleScale(float scale)
+    {
+        vehicleScale.localScale = new Vector3(scale, scale, 1);
     }
 
     public void PlayAudio(AudioClip clip)

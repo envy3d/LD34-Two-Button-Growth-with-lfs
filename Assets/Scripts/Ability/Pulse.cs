@@ -17,7 +17,7 @@ public class Pulse : MonoBehaviour
     {
         if (pulseActive)
         {
-            Rigidbody rb = other.GetComponent<Rigidbody>();
+            Rigidbody rb = other.GetComponentInParent<Rigidbody>();
             if (rb != null)
             {
                 float force = pulseForce.Evaluate((other.transform.position - transform.position).magnitude);

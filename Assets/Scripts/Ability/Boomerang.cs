@@ -39,13 +39,14 @@ public class Boomerang : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("vehicle"))
         {
+            audioSource.PlayOneShot(audioHit);
             VehicleController vc = other.GetComponent<VehicleController>();
             if (vc != null && vc.gameObject != launchedFromGO)
             {
-                audioSource.PlayOneShot(audioHit);
                 vc.SpinOut(targetSpinOutAmout, targetSpinTime, targetSpinCurve);
                 vc.KillEngine(targetKillEngineTime);
                 vc.PlayAudio(vc.audioGotHit);
+                Destroy(gameObject, 0.2f);
             }
         }
     }

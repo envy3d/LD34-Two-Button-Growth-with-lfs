@@ -62,7 +62,7 @@ public class SelectionScreenScript : MonoBehaviour
 
         if (readiedPlayers >= 2)
         {
-            startButton.SetActive(true);
+            //startButton.SetActive(true);
             if (Input.GetButtonDown("Submit"))
             {
                 SceneManager.LoadScene("jeremy_dev_2");

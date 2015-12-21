@@ -4,16 +4,10 @@ using System.Collections;
 public class Pulse : MonoBehaviour
 {
     public AnimationCurve pulseForce;
-    public Animator pulseAnim;
 
     private bool pulseActive = false;
 
-    void Start()
-    {
-        //pulseAnim.enabled = false;
-    }
-
-    void OnTriggerStay(Collider other)
+    public void OnTriggerStay(Collider other)
     {
         if (pulseActive)
         {
@@ -29,8 +23,6 @@ public class Pulse : MonoBehaviour
     public void ActivatePulse()
     {
         pulseActive = true;
-        //pulseAnim.enabled = true;
-        pulseAnim.SetTrigger("action");
         StartCoroutine(DeactivatePulse());
     }
 
@@ -40,7 +32,6 @@ public class Pulse : MonoBehaviour
         yield return new WaitForFixedUpdate();
         yield return new WaitForFixedUpdate();
         pulseActive = false;
-        //pulseAnim.enabled = false;
         //Debug.Log("Pulse End");
     }
 }

@@ -5,6 +5,8 @@ using System.Collections.Generic;
 
 public class SpinnerHand : MonoBehaviour
 {
+
+    public string buttonName = "P1B2";
     public float spinBaseSpeed = 60;
     public float boostedSpinSpeedModifier = 2;
     public float spinnerBoostedTime = 3;
@@ -28,52 +30,59 @@ public class SpinnerHand : MonoBehaviour
 
     void Update()
     {
+
         if (deactivated == false)
         {
+
             float spinSpeed = spinBaseSpeed * spinSpeedModifier;
             spinnerAngle += spinSpeed * Time.deltaTime;
 
             transform.rotation = Quaternion.AngleAxis(spinnerAngle, new Vector3(0, 0, 1));
 
-            //print(transform.rotation.eulerAngles.z.ToString("#.00"));
-        }
-    }
-
-    public void UseAbility()
-    {
-        if (deactivated == false)
-        {
-            deactivated = true;
             float angle = transform.rotation.eulerAngles.z;
-            
-            if (angle >= 0 && angle < 90)
+
+            //print(transform.rotation.eulerAngles.z.ToString("#.00"));
+
+            if (Input.GetButtonDown(buttonName))
             {
-                spinnerSelectionAnim.gameObject.SetActive(true);
-                spinnerSelectionAnim.transform.rotation = Quaternion.Euler(0, 0, 0);
-                BoostEvent.Invoke();
-            }
-            else if (angle >= 90 && angle < 180)
-            {
-                spinnerSelectionAnim.gameObject.SetActive(true);
-                spinnerSelectionAnim.transform.rotation = Quaternion.Euler(0, 0, 90);
-                BoomerangEvent.Invoke();
-            }
-            else if (angle >= 180 && angle < 270)
-            {
-                spinnerSelectionAnim.gameObject.SetActive(true);
-                spinnerSelectionAnim.transform.rotation = Quaternion.Euler(0, 0, 180);
-                audioPulse.Play();
-                PulseEvent.Invoke();
-            }
-            else if (angle >= 270)
-            {
-                spinnerSelectionAnim.gameObject.SetActive(true);
-                spinnerSelectionAnim.transform.rotation = Quaternion.Euler(0, 0, 270);
-                SpinnerSpeedAttack();
+                if (deactivated == false)
+                {
+                    deactivated = true;
+
+                    if (angle >= 0 && angle < 90)
+                    {
+                        spinnerSelectionAnim.gameObject.SetActive(true);
+                        spinnerSelectionAnim.transform.rotation = Quaternion.Euler(0, 0, 0);
+                        BoostEvent.Invoke();
+                    }
+                    else if (angle >= 90 && angle < 180)
+                    {
+                        spinnerSelectionAnim.gameObject.SetActive(true);
+                        spinnerSelectionAnim.transform.rotation = Quaternion.Euler(0, 0, 90);
+                        BoomerangEvent.Invoke();
+                    }
+                    else if (angle >= 180 && angle < 270)
+                    {
+                        spinnerSelectionAnim.gameObject.SetActive(true);
+                        spinnerSelectionAnim.transform.rotation = Quaternion.Euler(0, 0, 180);
+                        audioPulse.Play();
+                        PulseEvent.Invoke();
+                    }
+                    else if (angle >= 270)
+                    {
+                        spinnerSelectionAnim.gameObject.SetActive(true);
+                        spinnerSelectionAnim.transform.rotation = Quaternion.Euler(0, 0, 270);
+                        SpinnerSpeedAttack();
+                    }
+
+                    StartCoroutine(deactivationTimer());
+                }
             }
 
-            StartCoroutine(deactivationTimer());
         }
+
+        //Debug.Log (deactivated);
+
     }
 
     private void PrepSpinnerAttack()

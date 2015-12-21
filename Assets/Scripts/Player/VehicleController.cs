@@ -6,17 +6,16 @@ using System.Collections;
 public class VehicleController : MonoBehaviour
 {
     public string turnInputButton = "P1B1";
-    public string abilityInputButton = "P1B2";
     public event EventHandler<CombinedModifierEventArgs> OnModifyWheelForce;
     CombinedModifierEventArgs wheelForceModEventArgs = new CombinedModifierEventArgs();
     public float maxVelocity = 10;
     public float maxForce = 25;
     public float maxAngularVelocity = 180;
     public AnimationCurve turningAngleCurve = AnimationCurve.Linear(0, 0, 2, 50);
-    public SpinnerHand spinner;
     public AudioClip audioGotHit;
     public AudioClip audioSuccess;
     public AudioClip audioWin;
+
 
     private Rigidbody rb;
     private ITurningSelection turningSelection;
@@ -27,9 +26,8 @@ public class VehicleController : MonoBehaviour
 
     private float currMaxVelocity;
     private float modifiedMaxVelocity;
-    private bool canControlSteering = false;
-    private bool canControlEngine = false;
-    private bool canUseAbilities = false;
+    private bool canControlSteering = true;
+    private bool canControlEngine = true;
     private AudioSource audioSource;
 
     void Start()
@@ -56,14 +54,6 @@ public class VehicleController : MonoBehaviour
         if (canControlEngine)
         {
             UpdateWheelForce();
-        }
-
-        if (canUseAbilities)
-        {
-            if (Input.GetButtonDown(abilityInputButton))
-            {
-                spinner.UseAbility();
-            }
         }
     }
 
@@ -192,14 +182,12 @@ public class VehicleController : MonoBehaviour
     {
         canControlEngine = true;
         canControlSteering = true;
-        canUseAbilities = true;
     }
 
     public void EndCar()
     {
         canControlEngine = false;
         canControlSteering = false;
-        canUseAbilities = false;
     }
 
     public void PlayAudio(AudioClip clip)
@@ -207,9 +195,4 @@ public class VehicleController : MonoBehaviour
         audioSource.PlayOneShot(clip);
     }
 
-    public void OnCollisionStay(Collision collision)
-    {
-        //if (gameObject.name == "Vehicle 1")
-            //Debug.Log(collision.gameObject.name);
-    }
 }

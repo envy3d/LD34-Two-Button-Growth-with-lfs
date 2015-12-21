@@ -5,8 +5,7 @@ using System;
 [Serializable]
 public class VehicleProgressionInfo
 {
-    public VehicleController vehicleController;
-    public RankText rankText;
+    public VehicleController vc;
     [NonSerialized]
     public Transform transform;
     public int currentLap;

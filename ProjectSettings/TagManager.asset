@@ -14,10 +14,10 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - UI1
+  - UI2
+  - UI3
+  - UI4
   - vehicle
   - obstacle
   - wall
@@ -44,9 +44,6 @@ TagManager:
     locked: 0
   - name: Ground
     uniqueID: 347762355
-    locked: 0
-  - name: Ground Effects
-    uniqueID: 1938792505
     locked: 0
   - name: Back environment
     uniqueID: 1849517193

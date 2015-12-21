@@ -85,11 +85,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: c24760e0b1d80964fa9878b6379a0533, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 0.4
+  m_audioClip: {fileID: 8300000, guid: 74e66632879736e4eb0da103551ac876, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   Priority: 128
@@ -173,10 +173,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f521c54473050424bae14bb005c69c3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  launchForce: 30
-  returnForce: 15
-  maxVelocity: 25
-  lifetime: 8
+  launchForce: 32
+  returnForce: 20
+  maxVelocity: 30
+  lifetime: 15
   targetSpinOutAmout: 1200
   targetSpinTime: 1.6
   targetSpinCurve:
@@ -298,7 +298,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_PlayOnAwake
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: audioHit
@@ -307,26 +307,14 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: c24760e0b1d80964fa9878b6379a0533, type: 3}
-    - target: {fileID: 0}
-      propertyPath: Loop
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_Volume
-      value: 0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: lifetime
-      value: 8
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 8300000, guid: 74e66632879736e4eb0da103551ac876, type: 3}
     - target: {fileID: 0}
       propertyPath: launchForce
-      value: 30
+      value: 32
       objectReference: {fileID: 0}
     - target: {fileID: 0}
-      propertyPath: maxVelocity
-      value: 25
+      propertyPath: returnForce
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

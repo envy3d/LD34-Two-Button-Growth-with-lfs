@@ -15,8 +15,6 @@ public class ProgressionTracker : MonoBehaviour
     public AudioSource lap3Music;
     public AnimationCurve musicFadeInCurve = AnimationCurve.Linear(0, 0, 1, 1);
     public float musicFadeInTime = 0.5f;
-    public float musicVolume = 0.5f;
-    public float preGameTime = 4;
     public float postGameTime = 3;
 
     private List<float> totalProgressRank = new List<float>();
@@ -25,33 +23,28 @@ public class ProgressionTracker : MonoBehaviour
 
     void Start()
     {
-
-        audioSource = GetComponent<AudioSource>();
+		audioSource = GetComponent<AudioSource> ();
         if (progressInfo != null && trackSpline != null)
         {
             foreach (VehicleProgressionInfo pt in progressInfo)
             {
-                pt.transform = pt.vehicleController.transform;
+                pt.transform = pt.vc.transform;
+                pt.currentLap = 0;
+                pt.rank = 1;
                 pt.UpdateProgress(0);
             }
         }
-        StartCoroutine(StartGame());
 	}
-
+	
 	void Update()
     {
-
-        if (Input.GetButtonDown("Cancel"))
-        {
-            SceneManager.LoadScene("Title");
-        }
         if (progressInfo != null && trackSpline != null)
         {
             totalProgressRank.Clear();
             foreach (VehicleProgressionInfo pt in progressInfo)
             {
                 float prevProgress = pt.progress;
-                float progress = GetSplineDistanceToNearestPoint(pt.transform.position, pt.progress, 10, 0.01f, 5);
+                float progress = GetSplineDistanceToNearestPoint(pt.transform.position, pt.progress, 10, 0.01f, 3);
                 if (prevProgress < 0.1 && progress > 0.3)
                 {
                     progress = 0;
@@ -76,7 +69,7 @@ public class ProgressionTracker : MonoBehaviour
                         }
                         else if (currentHighestLap == 3)
                         {
-                            pt.vehicleController.PlayAudio(pt.vehicleController.audioWin);
+                            pt.vc.PlayAudio(pt.vc.audioWin);
                         }
                     }
                 }
@@ -96,12 +89,10 @@ public class ProgressionTracker : MonoBehaviour
                     if (pt.totalProgress == totalProgressRank[i])
                     {
                         int prevRank = pt.rank;
-                        pt.rank = i;
-                        pt.rankText.ChangeRank(pt.rank);
-
-                        if (prevRank != 0 && pt.rank == 0)
+                        pt.rank = i + 1;
+                        if (prevRank != 1 && pt.rank == 1)
                         {
-                            pt.vehicleController.PlayAudio(pt.vehicleController.audioSuccess);
+                            pt.vc.PlayAudio(pt.vc.audioSuccess);
                         }
                         break;
                     }
@@ -112,8 +103,7 @@ public class ProgressionTracker : MonoBehaviour
 
                     foreach (VehicleProgressionInfo pj in progressInfo)
                     {
-                        pj.vehicleController.EndCar();
-                        StartCoroutine(EndGame());
+                        pj.vc.EndCar();
                     }
                 }
             }
@@ -159,19 +149,10 @@ public class ProgressionTracker : MonoBehaviour
         while (timer <= musicFadeInTime)
         {
             yield return null;
-            source.volume = musicFadeInCurve.Evaluate(timer / musicFadeInTime) * musicVolume;
+            source.volume = musicFadeInCurve.Evaluate(timer / musicFadeInTime);
             timer += Time.deltaTime;
         }
-        source.volume = musicVolume;
-    }
-
-    private IEnumerator StartGame()
-    {
-        yield return new WaitForSeconds(preGameTime);
-        foreach (VehicleProgressionInfo vpi in progressInfo)
-        {
-            vpi.vehicleController.StartCar();
-        }
+        source.volume = 1;
     }
 
     private IEnumerator EndGame()

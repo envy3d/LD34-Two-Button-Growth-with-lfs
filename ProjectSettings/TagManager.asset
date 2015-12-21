@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Spinner
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - vehicle
+  - obstacle
+  - wall
+  - projectile
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Background
+    uniqueID: 1125320845
+    locked: 0
+  - name: Ground
+    uniqueID: 347762355
+    locked: 0
+  - name: Ground Effects
+    uniqueID: 1938792505
+    locked: 0
+  - name: Back environment
+    uniqueID: 1849517193
+    locked: 0
+  - name: Vehicle
+    uniqueID: 1777443131
+    locked: 0
+  - name: Obstacle Layer
+    uniqueID: 1874864161
+    locked: 0
+  - name: Projectiles
+    uniqueID: 3028613939
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: UI
+    uniqueID: 1790469451
+    locked: 0

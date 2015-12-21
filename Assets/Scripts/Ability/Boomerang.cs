@@ -39,7 +39,7 @@ public class Boomerang : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("vehicle"))
         {
-            VehicleController vc = other.GetComponent<VehicleController>();
+            VehicleController vc = other.GetComponentInParent<VehicleController>();
             if (vc != null && vc.gameObject != launchedFromGO)
             {
                 audioSource.PlayOneShot(audioHit);

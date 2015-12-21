@@ -8,6 +8,8 @@ public class ProgressionTracker : MonoBehaviour
     public BezierSpline trackSpline;
     public int numberOfLaps = 3;
     public VehicleProgressionInfo[] progressInfo;
+    public float maxScale = 3;
+    public float distanceForMaxScale = 0.6f;
 
     public AudioClip announceLap2;
     public AudioClip announceLap3;
@@ -87,6 +89,12 @@ public class ProgressionTracker : MonoBehaviour
 
             totalProgressRank.Sort();
             totalProgressRank.Reverse();
+            float avgTotalProgress = 0;
+            for (int i = 0; i < totalProgressRank.Count; i++)
+            {
+                avgTotalProgress += totalProgressRank[i];
+            }
+            avgTotalProgress /= totalProgressRank.Count + 1;
 
             foreach (VehicleProgressionInfo pt in progressInfo)
             {
@@ -103,6 +111,9 @@ public class ProgressionTracker : MonoBehaviour
                         {
                             pt.vehicleController.PlayAudio(pt.vehicleController.audioSuccess);
                         }
+                        float newScale = ((pt.totalProgress - avgTotalProgress) * maxScale) / distanceForMaxScale;
+                        newScale = Mathf.Clamp(newScale, 1, maxScale);
+                        pt.vehicleController.SetVehicleScale(newScale);
                         break;
                     }
                 }

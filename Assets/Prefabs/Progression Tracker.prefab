@@ -39,8 +39,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24315692, guid: e81b9d8a4bb9cdc4d9aca447bf28c7e8,
     type: 2}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
+  m_audioClip: {fileID: 8300000, guid: 5d1996b36b3e43548a3df3b376a626b3, type: 3}
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -142,6 +142,8 @@ MonoBehaviour:
     rank: 0
     progress: 0
     totalProgress: 0
+  maxScale: 3
+  distanceForMaxScale: 0.45
   announceLap2: {fileID: 8300000, guid: 2d936a0c65e9dbb4584ff052ce9a14ad, type: 3}
   announceLap3: {fileID: 8300000, guid: 93c21deb3e8a01b438aaafb47a6076dc, type: 3}
   lap2Music: {fileID: 0}
@@ -152,18 +154,19 @@ MonoBehaviour:
     - time: 0
       value: 0
       inSlope: 0
-      outSlope: 1
+      outSlope: 0
       tangentMode: 0
     - time: 1
       value: 1
-      inSlope: 1
+      inSlope: 0
       outSlope: 0
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   musicFadeInTime: 0.25
   musicVolume: 1
+  preGameTime: 2.5
   postGameTime: 5
 --- !u!1001 &100100000
 Prefab:
